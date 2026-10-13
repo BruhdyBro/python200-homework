@@ -3,9 +3,12 @@
 # Q1
 
 class Thermometer:
-    def __init__(self, location, readings = []):
+    def __init__(self, location, readings = None):
         self.location = location
-        self.readings = readings
+        if readings is not None:
+            self.readings = readings
+        else:
+            self.readings = []
 
     def add(self, reading):
         self.readings.append(reading)
@@ -275,7 +278,7 @@ print("--- Testing Invalid Creation with Multiple Errors ---")
 
 try:
     read6 = Reading(
-        station_id="reading6",
+        station_id="R6",
         temperature_c="number",
         humidity=150.0
     )
