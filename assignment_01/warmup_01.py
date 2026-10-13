@@ -48,8 +48,17 @@ print()
 
 # Q2
 print("--- Testing Thermometer Repr ---")
+therm2 = Thermometer("Jacksonville",[78,82,87,92])
 print(therm1)
+
+therm_list = [therm1, therm2]
+print(therm_list)
 print()
+
+# Q: what does Python displays when a class has no __repr__, and why that is unhelpful when debugging?
+# A: Python displays the memory address of the object when a class has no __repr__. This is unhelpful
+#    because it doesn't actually show the information or what data is being stored, only where it is
+#    located in current memory.
 
 
 # Q3

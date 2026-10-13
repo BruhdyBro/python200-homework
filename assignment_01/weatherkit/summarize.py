@@ -66,8 +66,8 @@ class DailyAggregator:
 
         return summaries
 
-    def incomplete_days(self, readings: list[HourlyReading]) -> list[str] | None:
-        """Returns dates with fewer than min_hours observations or None if all days were complete"""
+    def incomplete_days(self, readings: list[HourlyReading]) -> list[str]:
+        """Returns dates with fewer than min_hours observations"""
         daily_counts = {}
 
         for reading in readings:
@@ -78,8 +78,5 @@ class DailyAggregator:
         for date, count in daily_counts.items():
             if count < self.min_hours:
                 days.append(date)
-
-        if len(days) == 0:
-            return None
 
         return days

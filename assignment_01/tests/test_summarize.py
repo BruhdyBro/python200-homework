@@ -77,13 +77,21 @@ def test_min_hours():
     weather_data = WeatherResponse.model_validate(test_weather)
     readings = to_readings(weather_data)
 
-    aggregator = DailyAggregator(min_hours=5)
+    aggregator_normal = DailyAggregator(min_hours=5)
+    aggregator_lower = DailyAggregator(min_hours=4)
 
-    summary_list = aggregator.summarize(readings)
-    missed_days = aggregator.incomplete_days(readings)
+    summary_list_normal = aggregator_normal.summarize(readings)
+    missed_days_normal = aggregator_normal.incomplete_days(readings)
+    summary_list_lower = aggregator_lower.summarize(readings)
+    missed_days_lower = aggregator_lower.incomplete_days(readings)
 
-    assert len(summary_list) == 1
-    assert len(missed_days) == 1
+
+    assert len(summary_list_normal) == 1
+    assert len(missed_days_normal) == 1
+    assert missed_days_normal[0] == "2026-04-08"
+
+    assert len(summary_list_lower) == 2
+    assert len(missed_days_lower) == 0
 
 
 

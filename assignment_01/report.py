@@ -14,30 +14,33 @@ def main():
         try:
             processed_data = WeatherResponse.model_validate(data)
 
+            # Process it into a WeatherResponse model
+            hourly_readings = to_readings(processed_data)
+
+            # Convert to HourlyReading objects
+            aggregator = DailyAggregator()
+
+            # Aggregate to DailySummary objects
+            daily_sums = aggregator.summarize(hourly_readings)
+            missed_days = aggregator.incomplete_days(hourly_readings)
+
+            # Print daily summaries with one per row
+            for summary in daily_sums:
+                print(
+                    f"Date: {summary.date} | Max Temperature: {summary.temp_max} | Min Temperature: {summary.temp_min} | Total Precipitation: {summary.precipitation_sum} | Hours Observed: {summary.hours_observed}")
+
+            if missed_days:
+                print()
+                print(f"WARNING: the following days were skipped as they were under the minimum hour limit of {aggregator.min_hours}")
+
+                for day in missed_days:
+                    print(day)
+
         except ValidationError as e:
             print("Couldn't validate model:", e)
 
-        # Process it into a WeatherResponse model
-        hourly_readings = to_readings(processed_data)
-
-        # Convert to HourlyReading objects
-        aggregator = DailyAggregator()
-
-        # Aggregate to DailySummary objects
-        daily_sums = aggregator.summarize(hourly_readings)
-        missed_days = aggregator.incomplete_days(hourly_readings)
-
-        # Print daily summaries with one per row
-        for summary in daily_sums:
-            print(
-                f"Date: {summary.date} | Max Temperature: {summary.temp_max} | Min Temperature: {summary.temp_min} | Total Precipitation: {summary.precipitation_sum} | Hours Observed: {summary.hours_observed}")
-
-        if missed_days:
-            print()
-            print(f"WARNING: the following days were skipped as they were under the minimum hour limit of {aggregator.min_hours}")
-
-            for day in missed_days:
-                print(day)
+        except Exception as e: 
+            print("An error occurred:", e)
 
     except FileNotFoundError:
         print(f"Couldn't find weather_raw.json at {weather_raw_file}")

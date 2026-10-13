@@ -30,3 +30,11 @@ def to_readings(response: WeatherResponse) -> list[HourlyReading]:
         listHourly.append(HourlyReading(readings.time[i], readings.temperature_2m[i], readings.precipitation[i]))
 
     return listHourly
+
+
+# Q:    Why is HourlyReading a dataclass rather than a Pydantic model, when WeatherResponse is a Pydantic model? 
+#       Be specific. A good answer identifies where the boundary is.
+#
+# A:    WeatherResponse is a Pydantic model as it is the boundary where the oustide data meets the program and shapes 
+#       into the data written for the program.HourlyReading is a dataclass rather than a pydantic model because it is 
+#       where data has already been validated.
