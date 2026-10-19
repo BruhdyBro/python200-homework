@@ -13,8 +13,6 @@ from pathlib import Path
 
 parent = Path(__file__).resolve().parent
 outputs_folder = parent / "outputs"
-# Commented so I don't have issues or have to wait for API Call
-# Data originates from API Call so this simulates that
 
 url = "https://archive-api.open-meteo.com/v1/archive"
 params = {
@@ -171,6 +169,7 @@ plt.xlabel("Predicted Values")
 plt.ylabel("Actual Values")
 plt.legend()
 plt.savefig(outputs_folder / "predicted_vs_actual_high.png")
+plt.close()
 
 # The model struggles to predict on the  low end of temperatures before having more accuracy
 # towards the higher temperatures.

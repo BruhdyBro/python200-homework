@@ -78,12 +78,12 @@ new_model.fit(x_train,y_train)
 #   making predictions
 y_pred = new_model.predict(x_test)
 rmse = np.sqrt(mean_squared_error(y_pred, y_test))
-r2 = new_model.score(x_test, y_test)
+q3r2 = new_model.score(x_test, y_test)
 
 print("Slope:", new_model.coef_[0])
 print("Intercept:", new_model.intercept_)
 print("RMSE:", rmse)
-print("R^2:", r2)
+print("R^2:", q3r2)
 print()
 
 # Q:    Add a comment interpreting the slope in plain English. What does it mean for the daily high?
@@ -115,7 +115,8 @@ r2 = model_full.score(x_test, y_test)
 
 print("temp_min coefficient:", model_full.coef_[0])
 print("is_rainy coefficient:", model_full.coef_[1])
-print("R^2:", r2)
+print("Current R^2:", r2)
+print("Previous R^2:", q3r2)
 print()
 
 # Q:    Add a comment interpreting the is_rainy coefficient. What does it represent in practical terms?
