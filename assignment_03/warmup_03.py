@@ -187,6 +187,10 @@ logreg = logi_model.named_steps["logreg"]
 for name, coef in zip(features, logreg.coef_[0]):
     print(f"{name:20s}: {coef:+.2f}")
 print()
+# Wind speed tends to push the strongest towards skipping the day. This doesn't entirely
+# match my intuition, however it is known in Florida that strong winds tends to form from
+# storms, so having a large amount of wind already leads to having more rainfall, whereas 
+# rainfall can occur on its own in light showers.
 
 # -=- Q3 -=-
 probability = logi_model.predict_proba(X_test)[:, 1]
