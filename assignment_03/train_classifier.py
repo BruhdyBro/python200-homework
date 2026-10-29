@@ -140,6 +140,7 @@ knn_pipeline = Pipeline([
 ])
 knn_pipeline.fit(X_train, y_train)
 knn_y_pred = knn_pipeline.predict(X_test)
+print("Accuracy and Classification report for KNN Pipeline")
 print(f"Scaled Accuracy: {accuracy_score(y_test, knn_y_pred):.3f}")
 print(classification_report(y_test, knn_y_pred))
 print()
@@ -157,10 +158,12 @@ logi_model = Pipeline([
 logi_model.fit(X_train, y_train)
 
 logi_y_pred = logi_model.predict(X_test)
+print("Accuracy and Classification report for Logistic Regression Pipeline")
 print(f"Model Accuracy: {accuracy_score(y_test, logi_y_pred):.3f}")
 print(f"Precision: {precision_score(y_test, logi_y_pred):.3f}")
 print(f"Recall: {recall_score(y_test, logi_y_pred):.3f}")
 print(f"F1 Score: {f1_score(y_test, logi_y_pred):.3f}")
+print(classification_report(y_test, logi_y_pred))
 print()
 
 logreg = logi_model.named_steps["logreg"]

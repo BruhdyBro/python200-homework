@@ -151,7 +151,7 @@ scaled_knn_pipeline = Pipeline([
 
 scaled_knn_pipeline.fit(X_train, y_train)
 scaled_y_pred = scaled_knn_pipeline.predict(X_test)
-print("Scaled Accuracy:", accuracy_score(y_test, knn_y_pred))
+print("Scaled Accuracy:", accuracy_score(y_test, scaled_y_pred))
 print()
 
 # The scaling raised the accuracy from .925 to .958 which means it helped improve the accuracy.
@@ -193,7 +193,7 @@ probability = logi_model.predict_proba(X_test)[:, 1]
 
 for prob in probability[:5]:
     print(f"Probability: {prob:.3f}")
-
+# A probability near 0.5 tells us that the model is not confident.
 
 
 
