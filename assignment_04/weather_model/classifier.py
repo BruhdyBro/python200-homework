@@ -68,24 +68,11 @@ class WeatherClassifier:
 
         for day in days:
             curr_features = set(day.keys())
-            list_features = list(day.keys())
 
             missing = features - curr_features
 
             if missing:
                 raise ValueError(f"Missing a feature. Missing: {missing}")
-
-            if not (list_features[0] == "temperature_2m_max"):
-                raise ValueError("Missing feature: temperature_2m_max")
-            
-            if not (list_features[1] == "temperature_2m_min"):
-                raise ValueError("Missing feature: temperature_2m_min")
-
-            if not (list_features[2] == "precipitation_sum"):
-                raise ValueError("Missing feature: precipitation_sum")
-                        
-            if not (list_features[3] == "wind_speed_10m_max"):
-                raise ValueError("Missing feature: wind_speed_10m_max")
 
         
         X = pd.DataFrame(

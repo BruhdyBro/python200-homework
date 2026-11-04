@@ -90,11 +90,12 @@ def test_empty_list(clf):
 
 def test_feature_order(clf):
 
-    with pytest.raises(ValueError, match="feature"):
+    day = [{"temperature_2m_max": 24, "temperature_2m_min": 15, "wind_speed_10m_max": 13, "precipitation_sum": 0.0}]
 
-        day = [{"temperature_2m_max": 24, "temperature_2m_min": 15, "wind_speed_10m_max": 13, "precipitation_sum": 0.0}]
-
-        returned_list = clf.predict(day)
+    returned_list = clf.predict(day)
+    
+    assert returned_list[0].label == "good"
+    assert round(returned_list[0].probability, 3) == pytest.approx(0.991)
 
 
 def test_missing_feature(clf):
