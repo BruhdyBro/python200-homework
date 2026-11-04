@@ -42,5 +42,5 @@ have varying influences on the model so it could lead to incorrect results.
 original model.
 
 3. The component is already set up to handle multiple weather records as input and checks which features are in which position. One thing that would 
-have to be added is 
+have to be added is a way to handle missing data.
 """

@@ -36,7 +36,7 @@ def clf(model_path):
 
 @pytest.mark.parametrize("day, label, result", [
     ([{"temperature_2m_max": 20, "temperature_2m_min": 10, "precipitation_sum": 0.0, "wind_speed_10m_max": 15}], "good", 0.972),
-    ([{"temperature_2m_max": 35, "temperature_2m_min": 0, "precipitation_sum": 9.0, "wind_speed_10m_max": 26},], "good", 0.887)
+    ([{"temperature_2m_max": 5, "temperature_2m_min": -15, "precipitation_sum": 19.0, "wind_speed_10m_max": 36},], "skip", 0.007)
 ])
 def test_single_day(clf, day, label, result):
 
