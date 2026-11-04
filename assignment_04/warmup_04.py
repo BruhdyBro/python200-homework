@@ -20,7 +20,8 @@ print("Creating ModelInfo object")
 my_model = ModelInfo(models_folder / "weather_classifier_metadata.json")
 print("Number of features:", my_model.feature_count())
 print()
-
+# Loading it in the init is better as it's a one-and-done and does not need to constantly
+# reread the file each time.
 
 
 

@@ -58,7 +58,6 @@ class WeatherClassifier:
             proba_list: A list of Prediction objects, one for each day in the input list.
 
         Raises:
-            IndexError: If a specific feature is included or missing
             ValueError: If a specific feature not provided properly in the specified order.
         """
 
@@ -69,7 +68,7 @@ class WeatherClassifier:
             features = list(day.keys())
 
             if not len(features) == 4:
-                raise IndexError("Missing a feature. Features counted:", len(features))
+                raise ValueError("Missing a feature. Features counted:", len(features))
 
             if not (features[0] == "temperature_2m_max"):
                 raise ValueError("Missing feature: temperature_2m_max")
