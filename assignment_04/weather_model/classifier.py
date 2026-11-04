@@ -52,7 +52,7 @@ class WeatherClassifier:
         Makes a prediction based off a list of daily weather observations
 
         Attributes:
-            days: a list of dicts in the SPECIFIC format (temperature_2m_max, temperature_2m_mix, precipitation_sum, wind_speed_10m_max).
+            days: a list of dicts in the SPECIFIC format (temperature_2m_max, temperature_2m_min, precipitation_sum, wind_speed_10m_max).
 
         Returns:
             proba_list: A list of Prediction objects, one for each day in the input list.
@@ -64,22 +64,27 @@ class WeatherClassifier:
         if not days:
             return []
 
+        features = {"temperature_2m_max", "temperature_2m_min", "precipitation_sum", "wind_speed_10m_max"}
+
         for day in days:
-            features = list(day.keys())
+            curr_features = set(day.keys())
+            list_features = list(day.keys())
 
-            if not len(features) == 4:
-                raise ValueError("Missing a feature. Features counted:", len(features))
+            missing = features - curr_features
 
-            if not (features[0] == "temperature_2m_max"):
+            if missing:
+                raise ValueError(f"Missing a feature. Missing: {missing}")
+
+            if not (list_features[0] == "temperature_2m_max"):
                 raise ValueError("Missing feature: temperature_2m_max")
             
-            if not (features[1] == "temperature_2m_min"):
-                raise ValueError("Missing feature: temperature_2m_mix")
+            if not (list_features[1] == "temperature_2m_min"):
+                raise ValueError("Missing feature: temperature_2m_min")
 
-            if not (features[2] == "precipitation_sum"):
+            if not (list_features[2] == "precipitation_sum"):
                 raise ValueError("Missing feature: precipitation_sum")
                         
-            if not (features[3] == "wind_speed_10m_max"):
+            if not (list_features[3] == "wind_speed_10m_max"):
                 raise ValueError("Missing feature: wind_speed_10m_max")
 
         

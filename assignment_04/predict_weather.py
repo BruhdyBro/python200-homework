@@ -3,7 +3,7 @@ from weather_model import Prediction, WeatherClassifier
 
 # -=-=- Task 5 -=-=-
 
-if __name__ == "__main__":
+def main():
 
     assignment_04_dir = Path(__file__).resolve().parent
     models_folder = assignment_04_dir / "models"
@@ -32,7 +32,9 @@ if __name__ == "__main__":
 
     # Omitting the guard would run this program every time this program is imported
     # in other scripts as a helper.
-
+    
+if __name__ == "__main__":
+    main()
 
 """
 1. This would prevent wrong predictions because of incorrect factors, like a switched high temperature of 0 and a precipitation sum of 25. These factors

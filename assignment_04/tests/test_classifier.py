@@ -99,7 +99,7 @@ def test_feature_order(clf):
 
 def test_missing_feature(clf):
 
-    with pytest.raises(IndexError, match="feature"):
+    with pytest.raises(ValueError, match="wind"):
 
         day = [{"temperature_2m_max": 24, "temperature_2m_min": 15, "precipitation_sum": 0.0}]
 
