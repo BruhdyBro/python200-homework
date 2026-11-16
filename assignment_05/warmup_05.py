@@ -217,7 +217,7 @@ response = client.chat.completions.create(
     {review}
 
     Response only as valid JSON with the keys as sentiment, confidence (a float from 0 to 1), and reason (one sentence).
-    Do not invlude any markdown or backticks.
+    Do not include any markdown or backticks.
     """}],
 )
 print("Response:", response.choices[0].message.content)
