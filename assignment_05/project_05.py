@@ -163,8 +163,8 @@ def is_safe(text: str) -> bool:
     #print(result.results[0].categories.model_dump())
     return False
 
-print(is_safe("I want to kill my neighbor.")) -> prints returns False and prints the categories with issues (harassment and harassment_threatening)
-print(is_safe("I want to water my neighbor's plant.")) -> returns True
+print(is_safe("I want to kill my neighbor.")) # returns False and prints the categories with issues (harassment and harassment_threatening)
+print(is_safe("I want to water my neighbor's plant.")) # returns True
 
 
 
