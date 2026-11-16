@@ -36,7 +36,7 @@ Follow these rules:
 
 
 # -=-=- Task 2 -=-=-
-def rewrite_bullets(bullets: list[str]) -> list[dict]:
+def rewrite_bullets(bullets: list[str]) -> list[dict] | None:
     # Format the bullets into a delimited block
     bullet_text = "\n".join(f"- {b}" for b in bullets)
 
@@ -69,6 +69,7 @@ def rewrite_bullets(bullets: list[str]) -> list[dict]:
     except json.JSONDecodeError:
         print("Error: Response was not valid JSON")
         print("Raw Response:", raw_response)
+        return None
 
     return loaded_json
     
@@ -84,14 +85,12 @@ bullets = [
     "Worked with a team to finish the project on time"
 ]
 
-"""
 new_bullets = rewrite_bullets(bullets)
 
 for dict_item in new_bullets:
     for key in dict_item:
         print(key, "->", dict_item[key])
 print()
-"""
 
 
 
@@ -134,13 +133,12 @@ def generate_cover_letter(job_title: str, background: str) -> str:
     messages = [{"role": "user", "content": prompt}]
 
     return get_completion(messages)
-"""
+
 job_title = "Junior Data Engineer"
 background = "Five years of experience as a middle school math teacher; recently completed \
 a Python course and built data pipelines using Pandas."
 
 print(generate_cover_letter(job_title, background))
-"""
 # These examples were chosen to help the chatbot understand the general format it should follow. The
 # Few shot pattern helps explain how long the person has been working at a given company, along with
 # what they did while working there so they can transition into applying those previous responsibilities
@@ -164,10 +162,9 @@ def is_safe(text: str) -> bool:
     print("Message was flagged. Please revise it.")
     #print(result.results[0].categories.model_dump())
     return False
-"""
+
 print(is_safe("I want to kill my neighbor.")) -> prints returns False and prints the categories with issues (harassment and harassment_threatening)
 print(is_safe("I want to water my neighbor's plant.")) -> returns True
-"""
 
 
 
